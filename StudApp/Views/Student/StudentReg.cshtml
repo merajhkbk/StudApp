@@ -1,0 +1,126 @@
+﻿@model Stud.BAL.Students
+@{
+    ViewData["Title"] = "StudentReg";
+    Layout = ViewBag.Lang;
+}
+<h1>Student Registration Form</h1>
+<br />
+<h5>Students Information</h5>
+<hr />
+
+<link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-12">
+        @*<form asp-action="StudentReg">*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="radio" id="html" name="fav_language" onchange="ChangeLang(1)" value="1">
+                    <label for="html">English</label>
+                    <input type="radio" id="css" name="fav_language" onchange="ChangeLang(2)" value="2">
+                    <label for="css">Arabic</label>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RegNo" class="control-label"></label>
+                        <input asp-for="RegNo" id="txtRegNo" class="form-control" onchange="FillStudentData(1)" required />
+                        <span id="spnRegNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label"></label>
+                        <input asp-for="FullName" id="txtFullName" class="form-control" onchange="FillStudentData(3)" required />
+                        <span id="spnFullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DOB" class="control-label"></label>
+                        <input asp-for="DOB" type="date" id="txtDOB" class="form-control" required />
+                        <span id="spnDOB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gender" class="control-label"></label>
+                        <select id="ddlGender" asp-for="Gender" class="form-control">
+                            <option value="-1">--Select--</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span id="spnGender" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EmailAddr" class="control-label"></label>
+                        <input asp-for="EmailAddr" type="email" id="txtEmailAddr" class="form-control" onchange="FillStudentData(2)" required />
+                        <span id="spnEmailAddr" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DOA" class="control-label"></label>
+                        <input asp-for="DOA" type="date" id="txtDOA" class="form-control" required />
+                        <span id="spnDOA" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ClassId" class="control-label"></label>
+                        <select id="ddlClassId" asp-for="ClassId" class="form-control"></select>
+                        <span id="spnClassId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SessionId" class="control-label"></label>
+                        <select id="ddlSessionId" asp-for="SessionId" class="form-control"></select>
+                        <span id="spnSessionId" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group m-2">
+                    <input type="reset" id="btnClear" onclick="ClearData(1)" value="Clear" class="btn btn-secondary m-2" style="float:right" />
+                    <input type="button" id="btnDelete" onclick="SaveData(3)" value="Delete" class="btn btn-danger m-2" style="float:right;display:none;" />
+                    <input type="button" id="btnClearNew" onclick="ClearData(2)" value="Clear & New" class="btn btn-primary m-2" style="float:right" />
+                    <input type="button" id="btnSaveNew" onclick="SaveData(1)" value="Save & New" class="btn btn-success m-2" style="float:right" />
+                    <input type="button" id="btnSaveClose" onclick="SaveData(2)" value="Save & Close" class="btn btn-primary m-2" style="float:right" />
+                </div>
+            </div>
+
+            @*<a asp-action="Index">Back to List</a>*@
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="tblsubject" class="table table-active table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Subject Number</th>
+                                <th>Subject</th>
+                                <th>Cr. Hours</th>
+                                <th>Total Marks</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodysubject"></tbody>
+                    </table>
+                    <span id="spnTblsubject" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="lblMsg" class="control-label"></label>
+                    </div>
+                </div>
+            </div>
+
+        @*</form>*@
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/script.js"></script>
+    @*<input type="hidden" id="lang" value='@Request.QueryString["lang"]' />*@
+
+</div>
+
+
