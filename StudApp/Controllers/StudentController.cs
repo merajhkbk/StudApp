@@ -46,6 +46,7 @@ namespace StudApp.Controllers
             ObjList = iStudentReg.GetAutoCompleteData(2, Prefix);
             return Json(ObjList);
         }
+
         [HttpPost]
         public JsonResult GetAutoFullName(string Prefix)
         {

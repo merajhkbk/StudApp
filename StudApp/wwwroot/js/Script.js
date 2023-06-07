@@ -1,7 +1,4 @@
 ﻿$(function () {
- 
-
-
     AutoCompleteRegistrationNo();
     AutoCompleteEmailAddr();
     AutoCompleteFullName();
